@@ -1,0 +1,9 @@
+{
+  "name": "moments-api",
+  "version": "1.0.0",
+  "description": "GraphQL API for Moments app",
+  "main": "index.js",
+  "repository": "https://github.com/JakeLin/moments-api",
+  "author": "Jake Lin",
+  "license": "MIT"
+}
