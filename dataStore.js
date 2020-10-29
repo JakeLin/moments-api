@@ -20,7 +20,7 @@ const momentsDetails = {
       title: null,
       url: null,
       photos: ['https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRisv-yQgXGrto6OxQxX62JyvyQGvRsQQ760g&usqp=CAU'],
-      createdDate: moment().subtract(25, 'm'),
+      createdDate: moment().subtract(2, 'm').unix(),
     },
     {
       id: 1,
@@ -34,8 +34,36 @@ const momentsDetails = {
       title: 'Low-level programming on iOS',
       url: null,
       photos: ['https://i.pinimg.com/originals/15/27/3e/15273e2fa37cba67b5c539f254b26c21.png'],
-      createdDate: moment().subtract(2, 'd'),
-    }
+      createdDate: moment().subtract(25, 'm').unix(),
+    },
+    {
+      id: 2,
+      userDetails:  {
+        id: 1,
+        name: 'Taylor Swift',
+        avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlk0dgrwcQ0FiTKdgR3atzstJ_wZC4gtPgOmUYBsLO2aa9ssXs',
+        backgroundImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlk0dgrwcQ0FiTKdgR3atzstJ_wZC4gtPgOmUYBsLO2aa9ssXs'
+      },
+      type: 'PHOTOS',
+      title: "some mock date",
+      url: null,
+      photos: ['https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRisv-yQgXGrto6OxQxX62JyvyQGvRsQQ760g&usqp=CAU'],
+      createdDate: moment().subtract(1, 'd').unix(),
+    },
+    {
+      id: 3,
+      userDetails:  {
+        id: 2,
+        name: 'Mattt',
+        avatar: 'https://pbs.twimg.com/profile_images/969321564050112513/fbdJZmEh_400x400.jpg',
+        backgroundImage: 'https://pbs.twimg.com/profile_images/969321564050112513/fbdJZmEh_400x400.jpg'
+      },
+      type: 'PHOTOS',
+      title: 'test data',
+      url: null,
+      photos: ['https://i.pinimg.com/originals/15/27/3e/15273e2fa37cba67b5c539f254b26c21.png'],
+      createdDate: moment().subtract(2, 'd').unix(),
+    },
   ]
 }
 
