@@ -23,12 +23,12 @@ const typeDefs = gql`
     photos: [String!]! # non-nullable but can be empty
     createdDate: String!
     isLiked: Boolean! 
-    likes: [String!]! # liked user's avator URL
+    likes: [UserDetails!]! # liked users
   }
 
   type MomentsDetails {
     userDetails: UserDetails!
-    moments: [Moment]!
+    moments: [Moment!]!
   }
 
   type Query {
@@ -46,7 +46,6 @@ const resolvers = {
   },
   Mutation: {
     updateMomentLike: (_, {momentID, userID, isLiked}) => {
-      const userAvatarURL = 'https://avatars0.githubusercontent.com/u/573856?s=460&v=4'
       for (const i in momentsDetails.moments) {
         if (momentsDetails.moments[i].id === momentID) {
           if (momentsDetails.moments[i].isLiked === isLiked) {
@@ -54,10 +53,11 @@ const resolvers = {
           }
           momentsDetails.moments[i].isLiked = isLiked;
           if (isLiked) {
-            momentsDetails.moments[i].likes.push(userAvatarURL);
+            const likedUserDetails = getUserDetailsByID(userID)
+            momentsDetails.moments[i].likes.push(likedUserDetails);
           } else {
-            // Just remove the last one, non production code though
-            momentsDetails.moments[i].likes.pop();
+            // remove the item for that user
+            momentsDetails.moments[i].likes = momentsDetails.moments[i].likes.filter((item) => item.id !== userID);
           }
           break;
         }
@@ -66,6 +66,14 @@ const resolvers = {
     }
   }
 };
+
+const getUserDetailsByID = (userID) => {
+  // In production, may get it from DB
+  return {
+    id: userID,
+    avatar: 'https://avatars0.githubusercontent.com/u/573856?s=460&v=4'
+  };
+}
 
 // The ApolloServer constructor requires two parameters: your schema
 // definition and your set of resolvers.
