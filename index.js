@@ -1,5 +1,5 @@
 const { ApolloServer, gql } = require('apollo-server');
-const { momentsDetails } = require('./dataStore');
+let { momentsDetails } = require('./dataStore');
 
 const typeDefs = gql`
   type UserDetails {
@@ -20,8 +20,10 @@ const typeDefs = gql`
     type: MomentType!
     title: String # nullable
     url: String # nullable
-    photos: [String]! # non-nullable but can be empty
+    photos: [String!]! # non-nullable but can be empty
     createdDate: String!
+    isLiked: Boolean! 
+    likes: [String!]! # liked user's avator URL
   }
 
   type MomentsDetails {
@@ -30,14 +32,39 @@ const typeDefs = gql`
   }
 
   type Query {
-    getMomentsDetailsByUserID(userID: ID!): MomentsDetails
+    getMomentsDetailsByUserID(userID: ID!): MomentsDetails!
+  }
+
+  type Mutation {
+    updateLike(momentID: ID!, userID: ID!, isLiked: Boolean!): MomentsDetails!
   }
 `;
 
 const resolvers = {
   Query: {
-    getMomentsDetailsByUserID: (userID) => momentsDetails,
+    getMomentsDetailsByUserID: (_, {userID}) => momentsDetails,
   },
+  Mutation: {
+    updateLike: (_, {momentID, userID, isLiked}) => {
+      const userAvatarURL = 'https://avatars0.githubusercontent.com/u/573856?s=460&v=4'
+      for (const i in momentsDetails.moments) {
+        if (momentsDetails.moments[i].id === momentID) {
+          if (momentsDetails.moments[i].isLiked === isLiked) {
+            break
+          }
+          momentsDetails.moments[i].isLiked = isLiked;
+          if (isLiked) {
+            momentsDetails.moments[i].likes.push(userAvatarURL);
+          } else {
+            // Just remove the last one, non production code though
+            momentsDetails.moments[i].likes.pop();
+          }
+          break;
+        }
+      }
+      return momentsDetails;
+    }
+  }
 };
 
 // The ApolloServer constructor requires two parameters: your schema
