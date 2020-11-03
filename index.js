@@ -36,7 +36,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    updateLike(momentID: ID!, userID: ID!, isLiked: Boolean!): MomentsDetails!
+    updateMomentLike(momentID: ID!, userID: ID!, isLiked: Boolean!): MomentsDetails!
   }
 `;
 
@@ -45,7 +45,7 @@ const resolvers = {
     getMomentsDetailsByUserID: (_, {userID}) => momentsDetails,
   },
   Mutation: {
-    updateLike: (_, {momentID, userID, isLiked}) => {
+    updateMomentLike: (_, {momentID, userID, isLiked}) => {
       const userAvatarURL = 'https://avatars0.githubusercontent.com/u/573856?s=460&v=4'
       for (const i in momentsDetails.moments) {
         if (momentsDetails.moments[i].id === momentID) {
