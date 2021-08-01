@@ -74,7 +74,7 @@ const momentsDetails = {
       url: null,
       photos: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu_qaT2v7INBNFIOou6MFKdJCJQgXS-sLR5j6VXESd1V7DxOsRjlHiCPFqLN2IdezeIRk&usqp=CAU'],
       createdDate: moment().subtract(2, 'd').unix(),
-      isLiked: false,
+      isLiked: true,
       likes: [{id: '0', avatar: 'https://avatars0.githubusercontent.com/u/573856?s=460&v=4'},
               {id: '105', avatar: 'https://randomuser.me/api/portraits/women/69.jpg'}],
     },
