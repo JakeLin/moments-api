@@ -66,8 +66,8 @@ const momentsDetails = {
       userDetails:  {
         id: '3',
         name: 'Swift UI',
-        avatar: 'https://developer.apple.com/news/images/og/swiftui-og.png',
-        backgroundImage: 'https://developer.apple.com/news/images/og/swiftui-og.png'
+        avatar: 'https://devimages-cdn.apple.com/wwdc-services/articles/images/6F49D049-3D36-4B68-B8C4-96A20A4AF5E1/2048.jpeg',
+        backgroundImage: 'https://devimages-cdn.apple.com/wwdc-services/articles/images/6F49D049-3D36-4B68-B8C4-96A20A4AF5E1/2048.jpeg'
       },
       type: 'PHOTOS',
       title: 'Swift UI is awesome!!',
